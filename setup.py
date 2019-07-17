@@ -1,0 +1,43 @@
+from setuptools import setup, find_packages
+
+setup(
+    name='django-freezeinfo',
+    version=__import__('django_freezeinfo').__version__,
+    description=__import__('django_freezeinfo').__doc__,
+    long_description=open('README.rst').read(),
+    author='David Thenon',
+    author_email='dthenon@emencia.com',
+    url='https://github.com/emencia/django-freezeinfo',
+    license='MIT',
+    packages=find_packages(),
+    classifiers=[
+        'Programming Language :: Python',
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+        'Development Status :: 3 - Alpha',
+        'Environment :: Web Environment',
+        'Framework :: Django',
+        'Framework :: Django :: 1.4',
+        'Framework :: Django :: 1.5',
+        'Framework :: Django :: 1.6',
+        'Framework :: Django :: 1.7',
+        'Framework :: Django :: 1.8',
+        'Framework :: Django :: 1.9',
+        'Framework :: Django :: 1.10',
+        'Framework :: Django :: 1.11',
+        'Framework :: Django :: 2.0',
+        'Framework :: Django :: 2.1',
+        'Framework :: Django :: 2.2',
+        'Intended Audience :: Developers',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+    ],
+    install_requires=[
+        'six',
+        'django',
+    ],
+    include_package_data=True,
+    zip_safe=False
+)
