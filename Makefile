@@ -32,7 +32,7 @@ clean-install:
 	rm -Rf $(PACKAGE_NAME).egg-info
 .PHONY: clean-install
 
-clean: clean-install clean-pycaches
+clean: clean-install clean-pycache
 .PHONY: clean
 
 venv:

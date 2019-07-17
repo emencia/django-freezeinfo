@@ -1,9 +1,9 @@
 import pytest
 
-from django_freezeinfo import FreezeInfo
+from django_freezeinfo.info import FreezeInfo
 
 
-def test_output(db):
+def test_output():
     """
     Front interface should get the right wrapper and return correct output
     without any errors.
