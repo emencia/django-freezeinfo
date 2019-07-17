@@ -10,4 +10,7 @@ def test_infos():
     """
     instance = FreezeInfo()
 
-    assert instance.infos() == {}
+    # Temporary assertion until wrapper have been created and interface
+    # connected
+    with pytest.raises(NotImplementedError):
+        instance.infos()

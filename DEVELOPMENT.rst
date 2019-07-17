@@ -46,8 +46,13 @@ To ease development against multiple Python versions a tox configuration has bee
 
 Before using it you will need to install tox, it is recommended to install it at your system level (tox dependancy is not in tests requirements file): ::
 
-    sudo pip install tox
+    sudo pip install tox>=3.4.0
 
 Then go in the package directory ``django-freezeinfo`` and execute tox: ::
 
     tox
+
+Workflow
+********
+
+Please, start every work inside a new branch for each feature. You will push it and merge it or create a pull request to request for validation with collaborators.
