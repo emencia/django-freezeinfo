@@ -1,9 +1,14 @@
+from .wrappers.pip_info import PipInfo
+from .wrappers.buildout_info import BuildoutInfo
+from .errors import BuildoutError
+
+
 class FreezeInfo(object):
     """
     Main interface around wrappers
     """
 
-    def __init__(self):
+    def __init__(self, path=None):
         """
         It is not clear yet howto manage the switch between pip ou buildout
         wrapper.
@@ -25,7 +30,11 @@ class FreezeInfo(object):
         or not through test environments (We don't want it as this application
         requirement).
         """
-        self.wrapper = None
+        if path:
+            self.wrapper = BuildoutInfo(path)
+        else:
+            self.wrapper = PipInfo()
+        self.path = path
 
     def infos(self):
         """
@@ -34,5 +43,9 @@ class FreezeInfo(object):
         Returns:
             dict: Package items.
         """
-        raise NotImplementedError
-        # return self.wrapper.output()
+        output = self.wrapper.output()
+
+        if output.get('zc.buildout') and not self.path:
+            raise BuildoutError()
+
+        return output
