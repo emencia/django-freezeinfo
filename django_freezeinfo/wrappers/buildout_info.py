@@ -22,7 +22,6 @@ class BuildoutInfo(object):
             # Valid egg names
             if os.path.isdir(egg_dir) and self.eggname_filter(egg_name):
                 egginfo_dir = os.path.join(egg_dir, self.egginfo_dir)
-                
                 # Search throught egg-info dir for a requirement file if any
                 if os.path.exists(egginfo_dir):
                     requirement_filepath = os.path.join(

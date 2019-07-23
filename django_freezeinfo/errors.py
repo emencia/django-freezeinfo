@@ -3,4 +3,4 @@ class BuildoutError(Exception):
         self.value = "The buildout wrapper needs an 'eggs' path."
 
     def __str__(self):
-        return repr(self.value)
+        return self.value

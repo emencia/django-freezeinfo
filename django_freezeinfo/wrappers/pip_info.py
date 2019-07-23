@@ -5,15 +5,15 @@ try:
 except ImportError: # pip < 10.0
     from pip.operations import freeze
 
+PACKAGES = freeze.freeze()
 
 class PipInfo(object):
     """
     Pip wrapper
     """
     def output(self):
-        packages = freeze.freeze()
         output_dict = OrderedDict()
-        for package in packages:
+        for package in PACKAGES:
             try:
                 name, version = package.split('==')
                 output_dict[name] = version
