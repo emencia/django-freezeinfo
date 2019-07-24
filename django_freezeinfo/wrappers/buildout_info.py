@@ -36,7 +36,7 @@ class BuildoutInfo(object):
                                 if line and line.startswith(b'['):
                                     break
                                 elif line:
-                                    reqs.append(line)
+                                    reqs.append(line.decode('utf-8'))
                         if len(line)>0:
                             eggs[egg_name] = reqs
                     #else:
