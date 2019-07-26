@@ -4,7 +4,7 @@
 {% block content %}
 <h1>Freeze Info</h1>
 <form method="GET" id="freeze-form">
-   	<input type="text" id="path" name="path">
+    <input type="text" id="path" placeholder="a path to scan for Eggs" name="path">
     <input type="submit" value="Get Info">
     <pre id="output"></pre>
 </form>
@@ -18,17 +18,17 @@
     });
 
     function create_post() {
-	    $.ajax({
-	        url : "/admin/page-info/requirements/",
-	        type : "GET",
-	        data : { path : $('#path').val() },
-	        success : function(json) {
-	            $('#output').text(JSON.stringify(json, undefined, 2));
-	        },
-	        error : function(xhr,errmsg,err) {
-	            $('#output').text("Oops! We have encountered an error: " + err);
-	        }
-	    });
-	};
+        $.ajax({
+            url : "/admin/page-info/requirements/",
+            type : "GET",
+            data : { path : $('#path').val() },
+            success : function(json) {
+                $('#output').text(JSON.stringify(json, undefined, 2));
+            },
+            error : function(xhr,errmsg,err) {
+                $('#output').text("Oops! We have encountered an error: " + err);
+            }
+        });
+    };
   </script>
 {% endblock %}
