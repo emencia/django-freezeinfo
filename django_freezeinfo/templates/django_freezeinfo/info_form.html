@@ -1,0 +1,34 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block content %}
+<h1>Freeze Info</h1>
+<form method="GET" id="freeze-form">
+   	<input type="text" id="path" name="path">
+    <input type="submit" value="Get Info">
+    <pre id="output"></pre>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+
+    $('#freeze-form').on('submit', function(event){
+        event.preventDefault();
+        create_post();
+    });
+
+    function create_post() {
+	    $.ajax({
+	        url : "/admin/page-info/requirements/",
+	        type : "GET",
+	        data : { path : $('#path').val() },
+	        success : function(json) {
+	            $('#output').text(JSON.stringify(json, undefined, 2));
+	        },
+	        error : function(xhr,errmsg,err) {
+	            $('#output').text("Oops! We have encountered an error: " + err);
+	        }
+	    });
+	};
+  </script>
+{% endblock %}

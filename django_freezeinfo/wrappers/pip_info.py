@@ -5,7 +5,7 @@ try:
 except ImportError: # pip < 10.0
     from pip.operations import freeze
 
-PACKAGES = freeze.freeze()
+PACKAGES = list(freeze.freeze())
 
 class PipInfo(object):
     """

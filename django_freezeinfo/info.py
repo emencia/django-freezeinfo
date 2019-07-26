@@ -43,7 +43,10 @@ class FreezeInfo(object):
         Returns:
             dict: Package items.
         """
-        output = self.wrapper.output()
+        try:
+            output = self.wrapper.output()
+        except OSError as e:
+            raise BuildoutError(str(e))
 
         if output.get('zc.buildout') and not self.path:
             raise BuildoutError()
