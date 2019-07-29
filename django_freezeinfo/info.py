@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from .wrappers.pip_info import PipInfo
 from .wrappers.buildout_info import BuildoutInfo
 from .errors import BuildoutError
@@ -8,7 +10,7 @@ class FreezeInfo(object):
     Main interface around wrappers
     """
 
-    def __init__(self, path=None):
+    def __init__(self):
         """
         It is not clear yet howto manage the switch between pip ou buildout
         wrapper.
@@ -30,6 +32,10 @@ class FreezeInfo(object):
         or not through test environments (We don't want it as this application
         requirement).
         """
+        try:
+            path = settings.FREEZEINFO_BUILDOUT_EGGPATH
+        except AttributeError:
+            path = None
         if path:
             self.wrapper = BuildoutInfo(path)
         else:
