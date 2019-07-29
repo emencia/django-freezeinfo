@@ -1,3 +1,10 @@
+from django.conf import settings
+
+from .wrappers.pip_info import PipInfo
+from .wrappers.buildout_info import BuildoutInfo
+from .errors import BuildoutError
+
+
 class FreezeInfo(object):
     """
     Main interface around wrappers
@@ -25,7 +32,15 @@ class FreezeInfo(object):
         or not through test environments (We don't want it as this application
         requirement).
         """
-        self.wrapper = None
+        try:
+            path = settings.FREEZEINFO_BUILDOUT_EGGPATH
+        except AttributeError:
+            path = None
+        if path:
+            self.wrapper = BuildoutInfo(path)
+        else:
+            self.wrapper = PipInfo()
+        self.path = path
 
     def infos(self):
         """
@@ -34,5 +49,12 @@ class FreezeInfo(object):
         Returns:
             dict: Package items.
         """
-        raise NotImplementedError
-        # return self.wrapper.output()
+        try:
+            output = self.wrapper.output()
+        except OSError as e:
+            raise BuildoutError(str(e))
+
+        if output.get('zc.buildout') and not self.path:
+            raise BuildoutError()
+
+        return output
